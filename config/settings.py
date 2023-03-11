@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+from django.urls import reverse_lazy
+
 
 load_dotenv('.env')
 
@@ -44,8 +46,10 @@ INSTALLED_APPS = [
 
     # local 
     'courses.apps.CoursesConfig',
+    'students.apps.StudentsConfig',
 
     # 3rd party
+    'embed_video',
 ]
 
 MIDDLEWARE = [
@@ -147,3 +151,5 @@ EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 EMAIL_PORT = os.getenv("EMAIL_PORT")
 EMAIL_USE_TLS = True
+
+LOGIN_REDIRECT_URL = reverse_lazy('student_course_list')
